@@ -6,7 +6,7 @@ A library to support the benchmarking of functions, similar to unit-tests.
 
 Discussion group: https://groups.google.com/d/forum/benchmark-discuss
 
-Example usage:
+# Example usage
 Define a function that executes the code to be measured a
 specified number of times:
 
@@ -25,18 +25,6 @@ static void BM_StringCopy(benchmark::State& state) {
     std::string copy(x);
 }
 BENCHMARK(BM_StringCopy);
-
-// Augment the main() program to invoke benchmarks if specified
-// via the --benchmarks command line flag.  E.g.,
-//       my_unittest --benchmark_filter=all
-//       my_unittest --benchmark_filter=BM_StringCreation
-//       my_unittest --benchmark_filter=String
-//       my_unittest --benchmark_filter='Copy|Creation'
-int main(int argc, const char* argv[]) {
-  benchmark::Initialize(&argc, argv);
-  benchmark::RunSpecifiedBenchmarks();
-  return 0;
-}
 ```
 
 Sometimes a family of microbenchmarks can be implemented with
@@ -158,3 +146,8 @@ static void BM_MultiThreaded(benchmark::State& state) {
 }
 BENCHMARK(BM_MultiThreaded)->Threads(2);
 ```
+
+# Integrating with googletest
+benchmark ships with two libraries: `libbenchmark` and `libbenchmark_main`. Linking both with the object files containing your benchmarks will get you a basic executable with a simple main that will run the benchmarks and define some command line flags to control execution.
+
+A third library is available for the common case where both benchmarks and googletest unit tests should be run: `libbenchmark_test_main`. This library replaces `libbenchmark_main` and will run both benchmarks and googletest unit tests linked in to the executable.
