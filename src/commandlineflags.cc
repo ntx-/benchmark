@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "commandlineflags.h"
+#include "internal_macros.h"
 
 #include <cctype>
 #include <cstdlib>

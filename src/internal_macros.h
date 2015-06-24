@@ -29,6 +29,7 @@
 #define BENCHMARK_OS_CYGWIN 1
 #elif defined(_WIN32)
 #define BENCHMARK_OS_WINDOWS 1
+#pragma warning(disable:4996) // supress function deprecation warnings
 #elif defined(__APPLE__)
 // TODO(ericwf) This doesn't actually check that it is a Mac OSX system. Just
 // that it is an apple system.
