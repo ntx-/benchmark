@@ -17,8 +17,18 @@
 
 #ifdef BENCHMARK_OS_WINDOWS
 #include <Shlwapi.h>
-#include <VersionHelpers.h>
 #include <Windows.h>
+#ifndef __MINGW32__
+#include <VersionHelpers.h>
+#else
+// replacement implementation since MinGW doesn't have VersionHelpers.h
+bool IsWindowsXPOrGreater() {
+  OSVERSIONINFO os;
+  os.dwOSVersionInfoSize = sizeof(os);
+  DWORD data, data_size = sizeof(data);
+  return (GetVersionEx(&os) && os.dwPlatformId == VER_PLATFORM_WIN32_NT);
+}
+#endif
 #else
 #include <fcntl.h>
 #include <sys/resource.h>
