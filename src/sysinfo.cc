@@ -27,6 +27,8 @@
 #include <unistd.h>
 #if defined BENCHMARK_OS_FREEBSD || defined BENCHMARK_OS_MACOSX
 #include <sys/sysctl.h>
+#elif defined BENCHMARK_OS_LINUX || defined BENCHMARK_OS_CYGWIN
+#include <strings.h> // strncasecmp
 #endif
 #endif
 
