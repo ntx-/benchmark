@@ -659,7 +659,7 @@ class FunctionBenchmark : public Benchmark {
   FunctionBenchmark(const char* name, Function* func)
       : Benchmark(name), func_(func) {}
 
-  virtual void Run(State& st);
+  virtual void Run(State& st) override;
 
  private:
   Function* func_;
@@ -669,7 +669,7 @@ class FunctionBenchmark : public Benchmark {
 template <class Lambda>
 class LambdaBenchmark : public Benchmark {
  public:
-  virtual void Run(State& st) { lambda_(st); }
+  virtual void Run(State& st) override { lambda_(st); }
 
  private:
   template <class OLambda>
@@ -721,7 +721,7 @@ class Fixture : public internal::Benchmark {
  public:
   Fixture() : internal::Benchmark("") {}
 
-  virtual void Run(State& st) {
+  virtual void Run(State& st) override {
     this->SetUp(st);
     this->BenchmarkCase(st);
     this->TearDown(st);
@@ -834,7 +834,7 @@ class Fixture : public internal::Benchmark {
     }                                                         \
                                                               \
    protected:                                                 \
-    virtual void BenchmarkCase(::benchmark::State&);          \
+    virtual void BenchmarkCase(::benchmark::State&) override; \
   };
 
 #define BENCHMARK_DEFINE_F(BaseClass, Method)    \

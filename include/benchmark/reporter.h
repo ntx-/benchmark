@@ -158,8 +158,8 @@ class ConsoleReporter : public BenchmarkReporter {
   explicit ConsoleReporter(OutputOptions color_output = OO_Color)
       : name_field_width_(0), color_output_(color_output == OO_Color) {}
 
-  virtual bool ReportContext(const Context& context);
-  virtual void ReportRuns(const std::vector<Run>& reports);
+  virtual bool ReportContext(const Context& context) override;
+  virtual void ReportRuns(const std::vector<Run>& reports) override;
 
  protected:
   virtual void PrintRunData(const Run& report);
@@ -172,9 +172,9 @@ class ConsoleReporter : public BenchmarkReporter {
 class JSONReporter : public BenchmarkReporter {
  public:
   JSONReporter() : first_report_(true) {}
-  virtual bool ReportContext(const Context& context);
-  virtual void ReportRuns(const std::vector<Run>& reports);
-  virtual void Finalize();
+  virtual bool ReportContext(const Context& context) override;
+  virtual void ReportRuns(const std::vector<Run>& reports) override;
+  virtual void Finalize() override;
 
  private:
   void PrintRunData(const Run& report);
@@ -184,8 +184,8 @@ class JSONReporter : public BenchmarkReporter {
 
 class CSVReporter : public BenchmarkReporter {
  public:
-  virtual bool ReportContext(const Context& context);
-  virtual void ReportRuns(const std::vector<Run>& reports);
+  virtual bool ReportContext(const Context& context) override;
+  virtual void ReportRuns(const std::vector<Run>& reports) override;
 
  private:
   void PrintRunData(const Run& report);
