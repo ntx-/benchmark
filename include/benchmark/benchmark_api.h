@@ -721,11 +721,7 @@ class Fixture : public internal::Benchmark {
  public:
   Fixture() : internal::Benchmark("") {}
 
-  virtual void Run(State& st) override {
-    this->SetUp(st);
-    this->BenchmarkCase(st);
-    this->TearDown(st);
-  }
+  virtual void Run(State& st) override;
 
   // These will be deprecated ...
   virtual void SetUp(const State&) {}

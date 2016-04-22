@@ -436,4 +436,14 @@ int Benchmark::ArgsCnt() const {
 void FunctionBenchmark::Run(State& st) { func_(st); }
 
 }  // end namespace internal
+//=============================================================================//
+//                            Fixture
+//=============================================================================//
+
+void Fixture::Run(State& st) {
+  this->SetUp(st);
+  this->BenchmarkCase(st);
+  this->TearDown(st);
+}
+
 }  // end namespace benchmark
