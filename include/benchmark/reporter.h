@@ -198,7 +198,11 @@ inline const char* GetTimeUnitString(TimeUnit unit) {
     case kMicrosecond:
       return "us";
     case kNanosecond:
+#if !defined(__clang__)
+    // only clang realizes that all cases are handled, so we trade
+    // compile-time diagnostics for runtime fallbacks on other compilers
     default:
+#endif
       return "ns";
   }
 }
@@ -210,7 +214,11 @@ inline double GetTimeUnitMultiplier(TimeUnit unit) {
     case kMicrosecond:
       return 1e6;
     case kNanosecond:
+#if !defined(__clang__)
+    // only clang realizes that all cases are handled, so we trade
+    // compile-time diagnostics for runtime fallbacks on other compilers
     default:
+#endif
       return 1e9;
   }
 }
