@@ -769,7 +769,7 @@ class Fixture : public internal::Benchmark {
 #define BENCHMARK_WITH_UNIT(n, t) BENCHMARK(n)->Unit((t))
 #define BENCHMARK_RANGE(n, lo, hi) BENCHMARK(n)->Range((lo), (hi))
 #define BENCHMARK_RANGE2(n, l1, h1, l2, h2) \
-  BENCHMARK(n)->RangePair({{(l1), (h1)}, {(l2), (h2)}})
+  BENCHMARK(n)->Ranges({{(l1), (h1)}, {(l2), (h2)}})
 
 #if __cplusplus >= 201103L
 
