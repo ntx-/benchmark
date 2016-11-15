@@ -17,7 +17,6 @@
 
 #ifdef BENCHMARK_OS_WINDOWS
 #include <Shlwapi.h>
-#include <VersionHelpers.h>
 #include <Windows.h>
 #else
 #include <fcntl.h>
